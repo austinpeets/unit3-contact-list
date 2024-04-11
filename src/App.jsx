@@ -6,14 +6,11 @@ import './App.css'
 
 function App() {
   const [selectedContactId, setSelectedContactId] = useState(null);
-  
+  console.log(selectedContactId)
   return (
-    <div className="app-container">
-      <ContactList setSelectedContactId={setSelectedContactId} />
-      {selectedContactId && (
-        <SelectedContact selectedContactId={selectedContactId} />
-      )}
-      {!selectedContactId && <div className="no-contact-selected">No contact selected</div>}
+    <div>  
+        <ContactList setSelectedContactId={setSelectedContactId} />
+        <SelectedContact contact={selectedContactId} />
     </div>
   );
 }

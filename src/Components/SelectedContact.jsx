@@ -1,10 +1,11 @@
 import React from 'react'
 
 export default function SelectedContact({ contact }) {
+  
     if (!contact) {
         return <div>No contact Selected</div>
     }
-    const { address, company } = contact;
+    const { id, name, email, username, address, company } = contact;
     const { street, suite, city, zipcode, geo } = address;
     const { lat, lng } = geo;
     const { bs } = company;
