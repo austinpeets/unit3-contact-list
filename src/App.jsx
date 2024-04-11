@@ -6,13 +6,16 @@ import './App.css'
 
 function App() {
   const [selectedContactId, setSelectedContactId] = useState(null);
-  console.log(selectedContactId)
   return (
-    <div>  
-        <ContactList setSelectedContactId={setSelectedContactId} />
-        <SelectedContact contact={selectedContactId} />
-    </div>
-  );
+    <>
+      {
+        selectedContactId ? (<SelectedContact selectedContactId={selectedContactId} setSelectedContactId={setSelectedContactId}/>) 
+        : (
+          <ContactList setSelectedContactId={setSelectedContactId}/>
+        )
+      }
+    </>
+  )
 }
 
 export default App

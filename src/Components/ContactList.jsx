@@ -20,7 +20,7 @@ export default function ContactList({ setSelectedContactId }) {
         }
         fetchContacts()
     }
-    ,[setContacts]);
+    ,[]);
 
     return (
     <table>

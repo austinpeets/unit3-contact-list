@@ -1,51 +1,25 @@
-import React from 'react'
+import { useState } from 'react';
+import { useEffect } from 'react';
 
-export default function SelectedContact({ contact }) {
-  
-    if (!contact) {
-        return <div>No contact Selected</div>
-    }
-    const { id, name, email, username, address, company } = contact;
-    const { street, suite, city, zipcode, geo } = address;
-    const { lat, lng } = geo;
-    const { bs } = company;
-    
-    return (
-        <div>
-        <h2>Contact Details</h2>
-        <table>
-          <tbody>
-            <tr>
-              <td>Street</td>
-              <td>{street}</td>
-            </tr>
-            <tr>
-              <td>Suite</td>
-              <td>{suite}</td>
-            </tr>
-            <tr>
-              <td>City</td>
-              <td>{city}</td>
-            </tr>
-            <tr>
-              <td>Zipcode</td>
-              <td>{zipcode}</td>
-            </tr>
-            <tr>
-              <td>Latitude</td>
-              <td>{lat}</td>
-            </tr>
-            <tr>
-              <td>Longitude</td>
-              <td>{lng}</td>
-            </tr>
-            <tr>
-              <td>Company BS</td>
-              <td>{bs}</td>
-            </tr>
-          </tbody>
-        </table>
-      </div>
-    );
-  };
+export default function SelectedContact({ selectedContactId, setSelectedContactId }) {
+  const [contact, setContact] = useState([])
 
+    useEffect(() => {
+      async function fetchContact() {
+          try {
+              const response = await fetch(`https://fsa-jsonplaceholder-69b5c48f1259.herokuapp.com/users/${selectedContactId}`);
+              const data = await response.json();
+              setContact(data)
+          } catch (error) {
+              console.error(error)
+          }
+         
+      }
+      fetchContact()
+  }
+  ,[setSelectedContactId]);
+console.log(contact)
+  return (
+    <div>{contact.address.street}</div>
+  )
+}
